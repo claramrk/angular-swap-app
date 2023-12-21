@@ -1,2 +1,10 @@
 <p>test works!</p>
 <button (click)="onClick()">Testbutton</button>
+<input #myInput type="text" />
+
+<button (click)="logInputValue(myInput.value)">Wert anzeigen</button>
+<ul>
+  <li *ngFor="let item of items; let i = index">
+    <span #itemSpan>{{ i + 1 }}. {{ item }}</span>
+  </li>
+</ul>
