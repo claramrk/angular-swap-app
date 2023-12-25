@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { TaskService } from '../services/task.service';
 import { Task } from '../task';
@@ -21,7 +21,6 @@ import { UpdateTaskComponent } from '../update-task/update-task.component';
 })
 export class TasksComponent implements OnInit {
   tasks: Task[] = [];
-
   constructor(private taskService: TaskService) {}
 
   ngOnInit(): void {

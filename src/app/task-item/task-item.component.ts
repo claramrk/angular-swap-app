@@ -7,7 +7,6 @@ import {
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { TaskService } from '../services/task.service';
-import { UiService } from '../services/ui.service';
 import { UpdateService } from '../services/update.service';
 import { Task } from '../task';
 
@@ -28,7 +27,6 @@ export class TaskItemComponent implements OnInit {
 
   constructor(
     private taskService: TaskService,
-    private uiService: UiService,
     private updateService: UpdateService,
     private library: FaIconLibrary,
   ) {

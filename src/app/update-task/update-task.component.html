@@ -1,13 +1,7 @@
 <form *ngIf="showUpdateTask" class="update-form" (ngSubmit)="onSubmit()">
   <div class="form-control">
-    <label for="text">Aufgabe</label>
-    <input
-      type="text"
-      name="id"
-      [(ngModel)]="id"
-      id="text"
-      placeholder="Füge eine neue Aufgabe hinzu"
-    />
+    <label for="text">Id</label>
+    <input type="text" name="id" [(ngModel)]="id" id="text" placeholder="ID" />
   </div>
   <div class="form-control">
     <label for="text">Aufgabe</label>
@@ -16,7 +10,8 @@
       name="text"
       [(ngModel)]="text"
       id="text"
-      placeholder="Füge eine neue Aufgabe hinzu"
+      [defaultValue]=""
+      placeholder="Aufgabe"
     />
   </div>
   <div class="form-control">
@@ -26,7 +21,7 @@
       name="day"
       [(ngModel)]="day"
       id="day"
-      placeholder="Füge Tag und Uhrzeit hinzu"
+      placeholder="Ändere Tag und Uhrzeit:"
     />
   </div>
   <div class="form-control form-control-check">
