@@ -5,6 +5,12 @@
       "text": "Beispiel-Task 2",
       "day": "2023-08-22",
       "reminder": false
+    },
+    {
+      "id": 3,
+      "text": "aufgabeee",
+      "day": "20.10.2023 17:00",
+      "reminder": true
     }
   ]
 }

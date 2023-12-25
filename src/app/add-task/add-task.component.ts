@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -7,7 +8,7 @@ import { Task } from '../task';
 @Component({
   selector: 'app-add-task',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, NgIf],
   templateUrl: './add-task.component.html',
   styleUrl: './add-task.component.css',
 })
