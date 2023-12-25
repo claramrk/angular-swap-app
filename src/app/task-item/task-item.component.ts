@@ -16,15 +16,10 @@ import { Task } from '../task';
   styleUrl: './task-item.component.css',
 })
 export class TaskItemComponent implements OnInit {
-  // @Input() task: Task = { id: 0, text: '', day: '', reminder: false };
-  // Deklaration der Eigenschaften
   tasks: Task[] = [];
-  @Input() task!: Task; // Eingabe: Die aktuelle Aufgabe
-  // @Input() toggleReminder!: EventEmitter; // Eingabe: Die aktuelle Aufgabe
-
   faTrash = faTrash; // Das Font Awesome Trash-Icon
-  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter<Task>(); // Ausgabe-Event für das Löschen
-  @Output() toggleReminder: EventEmitter<Task> = new EventEmitter<Task>();
+
+  @Input() task!: Task; // Eingabe: Die aktuelle Aufgabe
 
   constructor(
     private taskService: TaskService,
@@ -40,10 +35,14 @@ export class TaskItemComponent implements OnInit {
     });
   }
 
+  @Output() onDeleteTask: EventEmitter<Task> = new EventEmitter<Task>(); // Ausgabe-Event für das Löschen
+
   onDelete(task: Task) {
     // Die onDelete-Methode wird aufgerufen, wenn der Delete-Button geklickt wird
     this.onDeleteTask.emit(task); // Löst das onDeleteTask-Ereignis aus und übergibt die Aufgabe
   }
+
+  @Output() toggleReminder: EventEmitter<Task> = new EventEmitter<Task>();
 
   onToggleReminder(task: Task): void {
     this.toggleReminder.emit(task);

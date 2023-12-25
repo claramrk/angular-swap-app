@@ -17,20 +17,21 @@ export class TaskService {
 
   constructor(private http: HttpClient) {}
 
-  deleteTask(taskId: number): Observable<void> {
-    const url = `${this.apiBaseUrl}/${taskId}`;
-    return this.http.delete<void>(url);
+  addTask(task: Task): Observable<Task> {
+    return this.http.post<Task>(this.apiBaseUrl, task, httpOptions);
   }
 
   getTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(this.apiBaseUrl);
   }
 
+  deleteTaskTest(taskId: number): Observable<void> {
+    const url = `${this.apiBaseUrl}/${taskId}`;
+    return this.http.delete<void>(url);
+  }
+
   updateTaskReminder(task: Task): Observable<Task> {
     const url = `${this.apiBaseUrl}/${task.id}`;
     return this.http.put<Task>(url, task, httpOptions);
-  }
-  addTaskService(task: Task): Observable<Task> {
-    return this.http.post<Task>(this.apiBaseUrl, task, httpOptions);
   }
 }

@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { TaskService } from '../services/task.service';
 import { Task } from '../task';
@@ -28,21 +28,22 @@ export class TasksComponent implements OnInit {
     // Der taskService.deleteTask() löscht die Aufgabe über eine HTTP-Anfrage
     // Nach dem erfolgreichen Löschen wird die tasks-Array aktualisiert, um die gelöschte Aufgabe zu entfernen
     this.taskService
-      .deleteTask(task.id)
+      .deleteTaskTest(task.id)
       .subscribe(
         () => (this.tasks = this.tasks.filter((t) => t.id !== task.id)),
       );
   }
 
   onToggleReminder(task: Task): void {
-    task.reminder = !task.reminder;
+    // task.reminder = !task.reminder;
     this.taskService.updateTaskReminder(task).subscribe();
+    //  () => (this.tasks = this.tasks.filter((t) => t.day === task.day)),
   }
 
   addTask(task: Task) {
     this.taskService
 
-      .addTaskService(task)
+      .addTask(task)
 
       .subscribe((task) => this.tasks.push(task));
   }
