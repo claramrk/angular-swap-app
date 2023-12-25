@@ -4,11 +4,18 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 import { TaskService } from '../services/task.service';
 import { Task } from '../task';
 import { TaskItemComponent } from '../task-item/task-item.component';
+import { UpdateTaskComponent } from '../update-task/update-task.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [NgFor, TaskItemComponent, TasksComponent, AddTaskComponent],
+  imports: [
+    NgFor,
+    TaskItemComponent,
+    TasksComponent,
+    AddTaskComponent,
+    UpdateTaskComponent,
+  ],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
@@ -32,12 +39,6 @@ export class TasksComponent implements OnInit {
       .subscribe(
         () => (this.tasks = this.tasks.filter((t) => t.id !== task.id)),
       );
-  }
-
-  onToggleReminder(task: Task): void {
-    // task.reminder = !task.reminder;
-    this.taskService.updateTaskReminder(task).subscribe();
-    //  () => (this.tasks = this.tasks.filter((t) => t.day === task.day)),
   }
 
   addTask(task: Task) {
