@@ -1,8 +1,10 @@
 <header class="header">
   <h1>App Task Tracker</h1>
   <app-button
-    label="Anmelden"
     color="#3498db"
+    color="{{ showAddTask ? 'red' : 'green' }}"
+    label="{{ showAddTask ? 'Schließen' : 'Hinzufügen' }}"
     (btnClick)="toggleAddTask()"
+    *ngIf="hasRoute('/')"
   ></app-button>
 </header>

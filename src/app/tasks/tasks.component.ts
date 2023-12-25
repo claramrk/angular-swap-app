@@ -1,15 +1,49 @@
 import { NgFor } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AddTaskComponent } from '../add-task/add-task.component';
+import { TaskService } from '../services/task.service';
 import { Task } from '../task';
 import { TaskItemComponent } from '../task-item/task-item.component';
 
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [NgFor, TaskItemComponent],
+  imports: [NgFor, TaskItemComponent, TasksComponent, AddTaskComponent],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
 })
-export class TasksComponent {
-  @Input() tasks: Task[] = [];
+export class TasksComponent implements OnInit {
+  tasks: Task[] = [];
+
+  constructor(private taskService: TaskService) {}
+
+  ngOnInit(): void {
+    // Diese Methode wird aufgerufen, wenn die Komponente initialisiert wird
+    // Hier werden die Aufgaben geladen und der tasks-Array aktualisiert
+    this.taskService.getTasks().subscribe((task) => (this.tasks = task));
+  }
+
+  deleteTask(task: Task) {
+    // Diese Methode wird aufgerufen, wenn eine Aufgabe gelöscht werden soll
+    // Der taskService.deleteTask() löscht die Aufgabe über eine HTTP-Anfrage
+    // Nach dem erfolgreichen Löschen wird die tasks-Array aktualisiert, um die gelöschte Aufgabe zu entfernen
+    this.taskService
+      .deleteTask(task.id)
+      .subscribe(
+        () => (this.tasks = this.tasks.filter((t) => t.id !== task.id)),
+      );
+  }
+
+  onToggleReminder(task: Task): void {
+    task.reminder = !task.reminder;
+    this.taskService.updateTaskReminder(task).subscribe();
+  }
+
+  addTask(task: Task) {
+    this.taskService
+
+      .addTaskService(task)
+
+      .subscribe((task) => this.tasks.push(task));
+  }
 }
