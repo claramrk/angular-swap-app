@@ -2,9 +2,8 @@ import { NgIf } from '@angular/common';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { UiService } from '../services/ui.service';
+import { UpdateService } from '../services/update.service';
 import { Task } from '../task';
-import { UpdateService } from './update.service';
 
 @Component({
   selector: 'app-update-task',
@@ -17,7 +16,7 @@ export class UpdateTaskComponent implements OnInit {
   showUpdateTask: boolean = false;
   subscription: Subscription;
 
-  constructor(private uiService: UiService) {
+  constructor(private updateService: UpdateService) {
     this.subscription = this.updateService
       .onToggleReminder()
       .subscribe((value) => {

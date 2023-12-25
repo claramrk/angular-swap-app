@@ -1,6 +1,5 @@
 import { NgClass, NgStyle } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import {
   FaIconLibrary,
   FontAwesomeModule,
@@ -9,6 +8,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { TaskService } from '../services/task.service';
 import { UiService } from '../services/ui.service';
+import { UpdateService } from '../services/update.service';
 import { Task } from '../task';
 
 @Component({
@@ -29,11 +29,11 @@ export class TaskItemComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private uiService: UiService,
-    private router: Router,
+    private updateService: UpdateService,
     private library: FaIconLibrary,
   ) {
     library.addIcons(faTrash); // Fügt das Trash-Icon zur Font Awesome-Bibliothek hinzu
-    this.subscription = this.uiService
+    this.subscription = this.updateService
       .onToggleReminder()
       .subscribe((value) => (this.showUpdateTask = value));
   }
@@ -59,6 +59,6 @@ export class TaskItemComponent implements OnInit {
   }
 
   updateTask() {
-    this.uiService.toggleUpdateTask();
+    this.updateService.toggleUpdateTask();
   }
 }
