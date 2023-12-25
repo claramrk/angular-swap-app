@@ -1,8 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { tasks } from './mock-tasks';
@@ -23,8 +22,10 @@ import { TestComponent } from './test/test.component';
     HttpClientModule,
     TasksComponent,
     TaskItemComponent,
-    AppRoutingModule,
     FooterComponent,
+    RouterOutlet,
+    RouterLink,
+    RouterLinkActive,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
